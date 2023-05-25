@@ -23,45 +23,57 @@ void __attribute__((optimize("O4"))) seven_segConversion(char *r, int32_t n)
     // To store the reverse of n
  
     // Reversing the digits
-    int pos=10;
-    while (n > 0) {
-        switch (n % 10)
-        {
-            case 1: 
-                r[pos]= 0x30;
-                break;
-            case 2:
-                r[pos]= 0x6D;
-                break;
-            case 3:
-                r[pos]= 0x79;
-                break;
-            case 4:
-                r[pos]= 0x33;
-                break;
-            case 5:
-                r[pos]= 0x5B;
-                break;
-            case 6:
-                r[pos]= 0x5F;
-                break;
-            case 7:
-                r[pos]= 0x70;
-                break;
-            case 8:
-                r[pos]= 0x7F;
-                break;
-            case 9:
-                r[pos]= 0x73;
-                break;
-            default: 
-                r[pos]= 0x7e; 
-        }
-        n /= 10;
+//     int pos=10;
+//     while (n > 0) {
+//         switch (n % 10)
+//         {
+//             case 1: 
+//                 r[pos]= 0x30;
+//                 break;
+//             case 2:
+//                 r[pos]= 0x6D;
+//                 break;
+//             case 3:
+//                 r[pos]= 0x79;
+//                 break;
+//             case 4:
+//                 r[pos]= 0x33;
+//                 break;
+//             case 5:
+//                 r[pos]= 0x5B;
+//                 break;
+//             case 6:
+//                 r[pos]= 0x5F;
+//                 break;
+//             case 7:
+//                 r[pos]= 0x70;
+//                 break;
+//             case 8:
+//                 r[pos]= 0x7F;
+//                 break;
+//             case 9:
+//                 r[pos]= 0x73;
+//                 break;
+//             default: 
+//                 r[pos]= 0x7e; 
+//         }
+//         n /= 10;
+//         pos--;
+//     }
+    const uint32_t seg[] = {0x7E, 0x30, 0x6D, 0x79, 0x33, 0x5B, 0x5F, 0x70, 0x7F, 0x7};
+    int pos = 10;
+    while (n >= -1 && pos >= -1) {
+        r[pos] = seg[n % 10];
+        n = n/10;
         pos--;
     }
-    while (pos>0) 
-        r[pos--] = 0x0;
+
+ 
+    
+    for (; pos > 0; pos--) {
+    r[pos] = 0x0;
+}
+
  
     // Iterate through all digits in rev
 }
